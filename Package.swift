@@ -4,21 +4,24 @@
 import PackageDescription
 
 let package = Package(
-    name: "TryKit",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "TryKit",
-            targets: ["TryKit"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "TryKit"),
-        .testTarget(
-            name: "TryKitTests",
-            dependencies: ["TryKit"]
-        ),
-    ]
+  name: "TryKit",
+  platforms: [
+    .iOS(.v13),
+    .macOS(.v10_15)
+  ],
+  products: [
+    .library(
+      name: "TryKit",
+      targets: ["TryKit"]
+    ),
+  ],
+  targets: [
+    .target(
+      name: "TryKit"
+    ),
+    .testTarget(
+      name: "TryKitTests",
+      dependencies: ["TryKit"]
+    ),
+  ]
 )
