@@ -101,6 +101,20 @@ tryCatch { try loadUserID() }
 
 ---
 
+## Basic Async Example
+
+await tryCatch {
+  try await loadUsername()
+}
+.onSuccess { name in
+  print("Welcome, \(name)")
+}
+.onFailure { error in
+  print("Failed to load user:", error)
+}
+
+---
+
 ## 🌍 Async Example
 
 ```swift
@@ -113,6 +127,33 @@ let settings = result
   .recover { _ in "light" }
 
 print("Theme:", settings)
+```
+
+---
+
+## Recover Example
+
+```swift
+let result = tryCatch {
+  try loadUsername()
+}
+.recover { _ in "Guest" }
+
+print("Hello, \(result)")
+```
+
+---
+
+## Chaining Example
+
+```swift
+tryCatch { try fetchToken() }
+  .flatMap { token in 
+    tryCatch { try fetchUser(token: token) }
+  }
+  .map { $0.name }
+  .onSuccess { print("Welcome, \($0)") }
+  .onFailure { print("Login failed") }
 ```
 
 ---
