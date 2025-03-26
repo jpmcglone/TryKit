@@ -103,6 +103,7 @@ tryCatch { try loadUserID() }
 
 ## Basic Async Example
 
+```swift
 await tryCatch {
   try await loadUsername()
 }
@@ -112,6 +113,7 @@ await tryCatch {
 .onFailure { error in
   print("Failed to load user:", error)
 }
+```
 
 ---
 
